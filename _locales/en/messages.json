@@ -1,0 +1,50 @@
+{
+  "extName": {
+    "message": "Currency Converter",
+    "description": "Extension name"
+  },
+  "extDesc": {
+    "message": "Easily convert your balance at the exchange sites into the currency you are using.",
+    "description": "Extension description"
+  },
+  "extBrowserTitle":{
+    "message": "Currency Converter Settings",
+    "description": "Extension browser title"
+  },
+  "buttonText":{
+    "message": "Convert!",
+    "description": "Convert button text"
+  },
+  "popupFrom":{
+    "message": "From:",
+    "description": "From currency"
+  },
+  "popupTo":{
+    "message": "To:",
+    "description": "To currency"
+  },
+  "popupFromNote":{
+    "message": "Only USD is supported for now!",
+    "description": "Extension from currency note"
+  },
+  "popupSave":{
+    "message": "SAVE",
+    "description": "Popup save button"
+  },
+  "popupSaveSuc":{
+    "message": "The settings were saved successfully.",
+    "description": "Save status: successful"
+  },
+  "popupSaveFail":{
+    "message": "Settings could not be saved.",
+    "description": "Save status: failed"
+  },
+  "popupSupportedHeader":{
+    "message": "Supported Exchange Sites",
+    "description": "Supported exchange sites header"
+  },
+  "comingSoon":{
+    "message": "Coming soon...",
+    "description": "Coming soon..."
+  }
+}

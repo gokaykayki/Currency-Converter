@@ -1,0 +1,14 @@
+/* Website's button css */
+.converterButton{
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  color: #ffffff;
+  background-color: #5cb85c;
+  float: right;
+  margin-right: 15px;
+  font-weight: bold;
+}
+.converterButton:hover{
+  background-color: #50a150;
+}
