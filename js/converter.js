@@ -14,7 +14,11 @@ $(document).ready(function(){
 
   // get target currency from local storage
   chrome.storage.sync.get(['to'], function(items) {
-    to = items.to;
+    if(!items.to){
+      to = "USD";
+    }else{
+      to = items.to;
+    }
   });
 
   $(balanceCol).on('click', ".converterButton", function(){
