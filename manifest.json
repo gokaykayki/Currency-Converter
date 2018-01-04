@@ -25,7 +25,7 @@
 
   "content_scripts": [
     {
-      "matches": ["https://www.bittrex.com/Balance","https://www.binance.com/userCenter/depositWithdraw.html"],
+      "matches": ["https://www.bittrex.com/Balance","https://www.binance.com/userCenter/depositWithdraw.html", "https://poloniex.com/balances"],
       "css": ["css/converter.css"],
       "js": ["js/jquery-3.2.1.min.js", "js/converter.js"]
     }

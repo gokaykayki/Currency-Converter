@@ -18,6 +18,7 @@ $(document).ready(function(){
   var parseAmount = "";
   var appendString = "";
   var url = "https://finance.google.com/finance/converter?a="; // pre
+  var exist = false;
   buttonC.innerHTML = chrome.i18n.getMessage("buttonText"); //set button text
 
   if(site == "www.bittrex.com" || site == "bittrex.com"){
@@ -28,6 +29,10 @@ $(document).ready(function(){
     balanceCol = $("li.total"); //the place where the button will be added
     estimatedDiv = balanceCol.find("strong.ng-scope"); //the tag that contains the balance
     buttonC.className = "cbBinance convertButton"; //add class to button for css
+  }else if(site == "www.poloniex.com"|| site == "poloniex.com"){
+    balanceCol = $("div.supressWrap:first"); //the place where the button will be added
+    estimatedDiv = balanceCol.find("span#accountValue_usd"); //the tag that contains the balance
+    buttonC.className = "cbPoloniex convertButton"; //add class to button for css
   }
 
   balanceCol.append(buttonC); //place the button
@@ -70,8 +75,9 @@ $(document).ready(function(){
     }else{
       appendString = " / " + parseAmount;
     }
-    if(fSplit.length < 8){
+    if(exist == false){
       estimatedDiv.append(appendString); // add converted amount and currency
+      exist = true;
     }
   }
 
@@ -87,12 +93,35 @@ $(document).ready(function(){
       }else{
         appendString = " / " + parseAmount;
       }
-      if(estimated.indexOf("/") == -1){
+      if(exist == false){
         estimatedDiv.append(appendString);
+        exist = true;
       }
     } else{
       estimatedDiv.append(" / Currency error"); // add error
     }
+  }
+
+  function poloniex() {
+    estimated = balanceCol.html(); // get total balance;
+    from = balanceCol.find(".supressWrap:first").html().charAt(0);
+    amount = estimatedDiv.html() // balance amount
+    if( from == "$"){
+      from = "USD";
+      convert();
+      if( amount == "0.00"){
+        appendString = " / 0 " + to;
+      }else{
+        appendString = " / " + parseAmount;
+      }
+      if(exist == false){
+        balanceCol.find(".supressWrap:first").append(appendString); // add converted amount and currency
+        exist = true;
+      }
+    }else{
+      balanceCol.find(".supressWrap:first").append("Currency error");
+    }
+
   }
 
   $(balanceCol).on('click', ".convertButton", function(){
@@ -100,6 +129,8 @@ $(document).ready(function(){
       bittrex();
     }else if(site == "www.binance.com" || site == "binance.com"){
       binance();
+    }else if(site == "www.poloniex.com" || site == "poloniex.com"){
+      poloniex();
     }
   });
 
