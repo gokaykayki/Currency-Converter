@@ -10,7 +10,7 @@
 .convertButton:hover{
   background-color: #50a150;
 }
-.cbBittrex, .cbBitstamp{
+.cbBittrex, .cbBitstamp, .cbYobit{
   padding: 5px;
   margin-right: 15px;
 }
@@ -27,4 +27,17 @@
 }
 .cbBitstamp{
   margin: 5px 0px 0px 0px;
+}
+.cbYobit{
+  float: left;
+  height: 25px;
+}
+.yobitButtonContainer{
+  height: 25px;
+  clear: both;
+  margin: 0px 0px 10px 0px;
+}
+.yobitButtonContainer .summ{
+  font-size: 15px;
+  line-height: 15px;
 }

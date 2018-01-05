@@ -25,18 +25,24 @@ $(document).ready(function(){
     balanceCol = $("#balance-wrapper #pad-wrapper .row:first .col-lg-12 .row:nth-child(2)"); //the place where the button will be added
     estimatedDiv = balanceCol.find("h4"); //the tag that contains the balance
     buttonC.className = "cbBittrex convertButton"; //add class to button for css
-  }else if(site == "www.binance.com"|| site == "binance.com"){
+  }else if(site == "www.binance.com" || site == "binance.com"){
     balanceCol = $("li.total"); //the place where the button will be added
     estimatedDiv = balanceCol.find("strong.ng-scope"); //the tag that contains the balance
     buttonC.className = "cbBinance convertButton"; //add class to button for css
-  }else if(site == "www.poloniex.com"|| site == "poloniex.com"){
+  }else if(site == "www.poloniex.com" || site == "poloniex.com"){
     balanceCol = $("div.supressWrap:first"); //the place where the button will be added
     estimatedDiv = balanceCol.find("span#accountValue_usd"); //the tag that contains the balance
     buttonC.className = "cbPoloniex convertButton"; //add class to button for css
-  }else if(site == "www.bitstamp.net"|| site == "bitstamp.net"){
+  }else if(site == "www.bitstamp.net" || site == "bitstamp.net"){
     balanceCol = $("div.total-account-value .row_33:nth-child(4) ul"); //the place where the button will be added
     estimatedDiv = balanceCol.find("li:first"); //the tag that contains the balance
     buttonC.className = "cbBitstamp convertButton"; //add class to button for css
+  }else if(site == "www.yobit.io" || site == "yobit.io" || site == "www.yobit.net" || site == "yobit.net"){
+    $('.dataTables_scroll').before("<div class='yobitButtonContainer'></div>");
+    balanceCol = $(".yobitButtonContainer"); //the place where the button will be added
+    estimatedDiv = $(".estimated .summ"); //the tag that contains the balance
+    var BTCUSDValue = $('tr[c1n="BTC"][c2n="USD"] td:nth-child(2)').html();
+    buttonC.className = "cbYobit convertButton"; //add class to button for css
   }
 
   balanceCol.append(buttonC);
@@ -127,19 +133,20 @@ $(document).ready(function(){
     }
   }
 
-  function bitstamp() {
-    estimated = estimatedDiv.find('strong.account-balance-section-value'); // get total balance;
+  function yobit() {
+    estimated = estimatedDiv.html().split(" ")[0]; // get total balance as btc;
+    var BTCValue = BTCUSDValue.slice(1,BTCUSDValue.length);
+    amount = estimated*BTCValue; // calculate
     from = "USD";
-    amount = estimated.html() // balance amount
     if( amount == "0.00"){
-      parseAmount = "0.00"
+      parseAmount = "0 " + to;
     }else{
       convert();
     }
-    appendString = "						" + to + " <strong class='account-balance-section-value convertedAmount'></strong>";
+    appendString = '<div class="wallets_meta"><div class="estimated"><span class="summ"></span></div></div>';
     if(exist == false){
-      balanceCol.find(".convertButton").before('<li>'+appendString+'</li>'); // add converted amount and currency
-      balanceCol.find('.convertedAmount').html(parseAmount);
+      balanceCol.append(appendString); // add converted amount and currency
+      balanceCol.find('.summ').html(parseAmount);
       exist = true;
     }
   }
@@ -154,6 +161,8 @@ $(document).ready(function(){
       poloniex();
     }else if(site == "www.bitstamp.net" || site == "bitstamp.net"){
       bitstamp();
+    }else if(site == "www.yobit.io" || site == "yobit.io" || site == "www.yobit.net" || site == "yobit.net"){
+      yobit()
     }
   });
 
