@@ -133,6 +133,23 @@ $(document).ready(function(){
     }
   }
 
+  function bitstamp() {
+    estimated = estimatedDiv.find('strong.account-balance-section-value'); // get total balance;
+    amount = estimated.html() // balance amount
+    from = "USD";
+    if( amount == "0.00"){
+      parseAmount = "0 " + to;
+    }else{
+      convert();
+    }
+    appendString = "						" + to + " <strong class='account-balance-section-value convertedAmount'></strong>";
+    if(exist == false){
+      balanceCol.find(".convertButton").before('<li>'+appendString+'</li>'); // add converted amount and currency
+      balanceCol.find('.convertedAmount').html(parseAmount);
+      exist = true;
+    }
+  }
+
   function yobit() {
     estimated = estimatedDiv.html().split(" ")[0]; // get total balance as btc;
     var BTCValue = BTCUSDValue.slice(1,BTCUSDValue.length);
