@@ -33,9 +33,13 @@ $(document).ready(function(){
     balanceCol = $("div.supressWrap:first"); //the place where the button will be added
     estimatedDiv = balanceCol.find("span#accountValue_usd"); //the tag that contains the balance
     buttonC.className = "cbPoloniex convertButton"; //add class to button for css
+  }else if(site == "www.bitstamp.net"|| site == "bitstamp.net"){
+    balanceCol = $("div.total-account-value .row_33:nth-child(4) ul"); //the place where the button will be added
+    estimatedDiv = balanceCol.find("li:first"); //the tag that contains the balance
+    buttonC.className = "cbBitstamp convertButton"; //add class to button for css
   }
 
-  balanceCol.append(buttonC); //place the button
+  balanceCol.append(buttonC);
 
   // get target currency from local storage
   chrome.storage.sync.get(['to'], function(items) {
@@ -121,8 +125,25 @@ $(document).ready(function(){
     }else{
       balanceCol.find(".supressWrap:first").append("Currency error");
     }
-
   }
+
+  function bitstamp() {
+    estimated = estimatedDiv.find('strong.account-balance-section-value'); // get total balance;
+    from = "USD";
+    amount = estimated.html() // balance amount
+    if( amount == "0.00"){
+      parseAmount = "0.00"
+    }else{
+      convert();
+    }
+    appendString = "						" + to + " <strong class='account-balance-section-value convertedAmount'></strong>";
+    if(exist == false){
+      balanceCol.find(".convertButton").before('<li>'+appendString+'</li>'); // add converted amount and currency
+      balanceCol.find('.convertedAmount').html(parseAmount);
+      exist = true;
+    }
+  }
+
 
   $(balanceCol).on('click', ".convertButton", function(){
     if(site == "www.bittrex.com" || site == "bittrex.com"){
@@ -131,6 +152,8 @@ $(document).ready(function(){
       binance();
     }else if(site == "www.poloniex.com" || site == "poloniex.com"){
       poloniex();
+    }else if(site == "www.bitstamp.net" || site == "bitstamp.net"){
+      bitstamp();
     }
   });
 

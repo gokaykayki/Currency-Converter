@@ -22,4 +22,5 @@ This Chrome extension will show you your balance on cryptocurrency exchange site
 * Bittrex
 * Binance
 * Poloniex
+* Bitstamp
 * _Coming soon..._

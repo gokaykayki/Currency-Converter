@@ -10,7 +10,7 @@
 .convertButton:hover{
   background-color: #50a150;
 }
-.cbBittrex{
+.cbBittrex, .cbBitstamp{
   padding: 5px;
   margin-right: 15px;
 }
@@ -24,4 +24,7 @@
 
 .cbPoloniex{
   margin-top: 1px;
+}
+.cbBitstamp{
+  margin: 5px 0px 0px 0px;
 }
