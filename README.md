@@ -20,4 +20,6 @@ This Chrome extension will show you your balance on cryptocurrency exchange site
 
 ## List of supported cryptocuurency exchange sites
 * Bittrex
+* Binance
+* Poloniex
 * _Coming soon..._
